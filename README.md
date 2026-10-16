@@ -421,19 +421,19 @@ it expects).
 
 ```toml
 [project]
-target_path   = "ACKNOWLEDGEMENTS.md"        # required
-fixit_command = "tools/starters/acknowledgements/generate-acknowledgements.sh"  # required
+target_path = "ACKNOWLEDGEMENTS.md" # required
+fixit_command = "tools/starters/acknowledgements/generate-acknowledgements.sh" # required
 # marker_begin = "<!-- BEGIN AUTO-GENERATED -->"  # optional; default shown
 # marker_end   = "<!-- END AUTO-GENERATED -->"    # optional; default shown
 
 [[blocks]]
-name          = "rust"                       # required; kebab-case when non-empty;
-                                             # used to suffix the block's markers
-                                             # (`<!-- BEGIN AUTO-GENERATED rust -->`)
-ecosystem     = "rust"                       # required; must match drivers/<ecosystem>.sh
+name = "rust" # required; kebab-case when non-empty;
+# used to suffix the block's markers
+# (`<!-- BEGIN AUTO-GENERATED rust -->`)
+ecosystem = "rust" # required; must match drivers/<ecosystem>.sh
 manifest_path = "crates/your-cli/Cargo.toml" # ecosystem-specific (rust driver)
-template_path = "about.hbs"                  # ecosystem-specific (rust driver)
-config_path   = "about.toml"                 # ecosystem-specific (rust driver)
+template_path = "about.hbs" # ecosystem-specific (rust driver)
+config_path = "about.toml" # ecosystem-specific (rust driver)
 ```
 
 A repo can declare multiple blocks — typically one per shipping artefact (a
@@ -452,13 +452,13 @@ byte-identical after the refactor.
 
 ```toml
 [project]
-target_path   = "ACKNOWLEDGEMENTS.md"
+target_path = "ACKNOWLEDGEMENTS.md"
 fixit_command = "tools/starters/acknowledgements/generate-acknowledgements.sh"
 
 [rust]
 manifest_path = "crates/your-cli/Cargo.toml"
 template_path = "about.hbs"
-config_path   = "about.toml"
+config_path = "about.toml"
 ```
 
 Existing consumers don't need to migrate — the shim is permanent for the
@@ -500,11 +500,11 @@ Worked example:
 
 ```toml
 [[blocks]]
-name             = "node-devtools"
-ecosystem        = "node"
-manifest_path    = "package.json"
-node_allow_path  = "licences.node-allow.txt"
-prod_only        = false
+name = "node-devtools"
+ecosystem = "node"
+manifest_path = "package.json"
+node_allow_path = "licences.node-allow.txt"
+prod_only = false
 ```
 
 Strict-licence gate: `license-checker --onlyAllow "<semi-joined SPDX list>"`
@@ -535,9 +535,9 @@ Worked example:
 
 ```toml
 [[blocks]]
-name          = "go"
-ecosystem     = "go"
-module_path   = "cmd/anvil"
+name = "go"
+ecosystem = "go"
+module_path = "cmd/anvil"
 go_allow_path = "licences.go-allow.txt"
 ```
 
@@ -573,9 +573,9 @@ Worked example:
 
 ```toml
 [[blocks]]
-name              = "python"
-ecosystem         = "python"
-venv_path         = ".venv"
+name = "python"
+ecosystem = "python"
+venv_path = ".venv"
 python_allow_path = "licences.python-allow.txt"
 ```
 
@@ -623,18 +623,18 @@ Inventory entry schema (`name` + `spdx` required; `version`, `source` optional;
 
 ```toml
 [[binary]]
-name    = "OpenSSH"
+name = "OpenSSH"
 version = "9.6p1"
-spdx    = "BSD-3-Clause"
-source  = "https://www.openssh.com/"
+spdx = "BSD-3-Clause"
+source = "https://www.openssh.com/"
 ```
 
 Worked example:
 
 ```toml
 [[blocks]]
-name           = "binaries"
-ecosystem      = "bundled-binaries"
+name = "binaries"
+ecosystem = "bundled-binaries"
 inventory_path = "bundled-binaries.toml"
 ```
 
@@ -658,22 +658,22 @@ at its own `package.json`:
 
 ```toml
 [[blocks]]
-name             = "cli"
-ecosystem        = "node"
-manifest_path    = "packages/cli/package.json"
-node_allow_path  = "licences.node-allow.txt"
+name = "cli"
+ecosystem = "node"
+manifest_path = "packages/cli/package.json"
+node_allow_path = "licences.node-allow.txt"
 
 [[blocks]]
-name             = "http-api"
-ecosystem        = "node"
-manifest_path    = "packages/http-api/package.json"
-node_allow_path  = "licences.node-allow.txt"
+name = "http-api"
+ecosystem = "node"
+manifest_path = "packages/http-api/package.json"
+node_allow_path = "licences.node-allow.txt"
 
 [[blocks]]
-name             = "sidecar"
-ecosystem        = "node"
-manifest_path    = "packages/sidecar/package.json"
-node_allow_path  = "licences.node-allow.txt"
+name = "sidecar"
+ecosystem = "node"
+manifest_path = "packages/sidecar/package.json"
+node_allow_path = "licences.node-allow.txt"
 ```
 
 Each block gets its own marker pair in the target file. `--check` reports
@@ -686,11 +686,11 @@ are marked `"private": true`.
 
 ```toml
 [[blocks]]
-name             = "node"
-ecosystem        = "node"
-manifest_path    = "package.json"
-node_allow_path  = "licences.node-allow.txt"
-prod_only        = true
+name = "node"
+ecosystem = "node"
+manifest_path = "package.json"
+node_allow_path = "licences.node-allow.txt"
+prod_only = true
 ```
 
 Simple, broad, blunt. License-checker walks the root and resolves through the
@@ -704,11 +704,11 @@ root-manifest block:
 
 ```toml
 [[blocks]]
-name             = "node-devtools"
-ecosystem        = "node"
-manifest_path    = "package.json"
-node_allow_path  = "licences.node-allow.txt"
-prod_only        = false
+name = "node-devtools"
+ecosystem = "node"
+manifest_path = "package.json"
+node_allow_path = "licences.node-allow.txt"
+prod_only = false
 ```
 
 The block then includes `devDependencies`. Pair with `exclude` if a noisy dep
